@@ -5,20 +5,49 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Form submission and save to DB</title>
 	<link rel="stylesheet" href="">
+
+	<style>
+		
+		h1,h2,h3,h4,h5{color:#049eca;}
+		body{}
+		input, #address_t, #file_attach_button{width: 80%; padding: 10px; margin: 8px 0; border-radius: 5px; border:1px solid #049eca}
+		input[type="file"]::file-selector-button {
+							  border-radius: 4px;
+							  padding: 0 16px;
+							  height: 40px;
+							   border: 1px solid #049eca;
+												 }
+		#form_1{width: 400px; margin: 20px auto; border:1px dotted gray; padding:10px; }
+		#top_bottom {width: 100%; min-height: 100px; background:#1b1919; float: left;}
+		#form_div{width: 100%; height:auto; float:left;}
+		
+	</style>
 </head>
 <body>
-	
-	<form action="" method="post" enctype="multipart/form-data">
-		<label><h1>Form submission to store and retrieve in database</h1></label>
+	<div class="main" style="width: 100%; height:auto;">
+		<div id="top_bottom">
+			
+		</div>
+		<div id="form_div">
+			
+		
+			<form action="" method="post" id="form_1" enctype="multipart/form-data">
+				<label><h1>Form submission in/out DB</h1></label>
 
-		<input type="text" name="text_input" id="name" placeholder="Name"> <br/>
-		<input type="email" name="email" id="email" placeholder="Email" required> <br/>
-		<input type="number" name="phone" id="phone" placeholder="Phone Number" min="1" max="1999999999" required> <br/>
-		<textarea name="address_text" id="address_t" placeholder="Enter your address by 100 characters" maxlength="100" ></textarea><br/>
-		<input type="file" name = "file_name_var" accept=" .pdf"><br/><br/> 
-		<input type="submit" name = "button_var">
+				<input type="text" name="text_input" id="name" placeholder="Name"> <br/>
+				<input type="email" name="email" id="email" placeholder="Email" required> <br/>
+				<input type="number" name="phone" id="phone" placeholder="Phone Number" min="1" max="1999999999" required> <br/>
+				<textarea name="address_text" id="address_t" placeholder="Enter your address by 100 characters" maxlength="100" ></textarea><br/>
+				<input type="file" name = "file_name_var" id="file_attach_button" accept=" .pdf"><br/><br/> 
+				<input type="submit" id="button" name = "button_var">
 
-	</form>
+			</form>
+		</div>	
+
+		<div id="top_bottom">
+			
+		</div>
+	</div>
 <?php
 
 // Database issue- DB connection setup
@@ -28,21 +57,7 @@ $db_possord = "";
 $db_hostname = "localhost";
 $db_connect = mysqli_connect($db_hostname, $db_user, $db_possord, $db_name );
 
-// file type validation
-/*	if(isset($_FILES['file_name_var']))
-						{
-							$file_name_var = $_FILES['file_name_var']['name']; 
-							$allowed_extension = '.pdf';
-							$file_extension = strtolower((pathinfo( $file_name_var, PATHINFO_EXTENSION)));
-							if ($file_extension == $allowed_extension)
-								{
-									echo "Correct file uploaded";
-								}
-							else die("Unable to upload file. Please upload .pdf file only"); 
-						}
-*/
 
-// file type validation cods ends here
 
 if (isset($_POST['button_var']) && isset($_FILES['file_name_var']))
 		{ 
