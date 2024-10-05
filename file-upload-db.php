@@ -15,7 +15,7 @@
 		<input type="email" name="email" id="email" placeholder="Email" required> <br/>
 		<input type="number" name="phone" id="phone" placeholder="Phone Number" min="1" max="1999999999" required> <br/>
 		<textarea name="address_text" id="address_t" placeholder="Enter your address by 100 characters" maxlength="100" ></textarea><br/>
-		<input type="file" name = "file_name_var"><br/><br/> 
+		<input type="file" name = "file_name_var" accept=" .pdf"><br/><br/> 
 		<input type="submit" name = "button_var">
 
 	</form>
@@ -28,7 +28,23 @@ $db_possord = "";
 $db_hostname = "localhost";
 $db_connect = mysqli_connect($db_hostname, $db_user, $db_possord, $db_name );
 
-if (isset($_POST['button_var']))
+// file type validation
+/*	if(isset($_FILES['file_name_var']))
+						{
+							$file_name_var = $_FILES['file_name_var']['name']; 
+							$allowed_extension = '.pdf';
+							$file_extension = strtolower((pathinfo( $file_name_var, PATHINFO_EXTENSION)));
+							if ($file_extension == $allowed_extension)
+								{
+									echo "Correct file uploaded";
+								}
+							else die("Unable to upload file. Please upload .pdf file only"); 
+						}
+*/
+
+// file type validation cods ends here
+
+if (isset($_POST['button_var']) && isset($_FILES['file_name_var']))
 		{ 
 
 			// Form related data taken here-
@@ -43,6 +59,14 @@ if (isset($_POST['button_var']))
 				$file_temp_name = $_FILES['file_name_var']['tmp_name'];  // i did mistake here writing tem instead of tmp , careful. Error- Undefined array key 
 				$file_type = $_FILES['file_name_var']['type'];
 				$file_directory = "uploads/".basename($file_name_var); // i did 3 mistake here- omiting .basename..not a directory type error.
+			// Filter out file type .pdf
+				$allowed_extension = 'pdf';
+				$file_extension = strtolower((pathinfo( $file_name_var, PATHINFO_EXTENSION)));
+
+				if ($file_extension == $allowed_extension)
+					{
+									
+
 
 					if (move_uploaded_file($file_temp_name, $file_directory))
 					{
@@ -59,6 +83,8 @@ if (isset($_POST['button_var']))
 							else echo "Failed to upload in database! ". mysqli_error($db_connect);
 
 					}
+					}
+					else die("Sorry! Unable to process. please upload only .pdf file");
 		}
 
 ?>
