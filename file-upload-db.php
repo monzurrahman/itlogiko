@@ -9,7 +9,7 @@
 <body>
 	
 	<form action="" method="post" enctype="multipart/form-data">
-		<label><h1>For submission to store and retrieve in database</h1></label>
+		<label><h1>Form submission to store and retrieve in database</h1></label>
 
 		<input type="text" name="text_input" id="name" placeholder="Name"> <br/>
 		<input type="email" name="email" id="email" placeholder="Email" required> <br/>
