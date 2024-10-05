@@ -9,7 +9,7 @@
 <body>
 	
 	<form action="" method="post" enctype="multipart/form-data">
-		<label><h1>For submission to staroe and retrieve in database</h1></label>
+		<label><h1>For submission to store and retrieve in database</h1></label>
 
 		<input type="text" name="text_input" id="name" placeholder="Name"> <br/>
 		<input type="email" name="email" id="email" placeholder="Email" required> <br/>
@@ -59,11 +59,17 @@ if (isset($_POST['button_var']) && isset($_FILES['file_name_var']))
 				$file_temp_name = $_FILES['file_name_var']['tmp_name'];  // i did mistake here writing tem instead of tmp , careful. Error- Undefined array key 
 				$file_type = $_FILES['file_name_var']['type'];
 				$file_directory = "uploads/".basename($file_name_var); // i did 3 mistake here- omiting .basename..not a directory type error.
+				
+			//Specify the size of the file
+				$file_size_limit = 2 * 1024 * 1024; // 2MB limit
+				$file_size_uploaded = $_FILES['file_name_var']['size'];
+ 
+
 			// Filter out file type .pdf
 				$allowed_extension = 'pdf';
 				$file_extension = strtolower((pathinfo( $file_name_var, PATHINFO_EXTENSION)));
 
-				if ($file_extension == $allowed_extension)
+				if (($file_extension == $allowed_extension) && ($file_size_uploaded<=$file_size_limit))
 					{
 									
 
@@ -84,7 +90,7 @@ if (isset($_POST['button_var']) && isset($_FILES['file_name_var']))
 
 					}
 					}
-					else die("Sorry! Unable to process. please upload only .pdf file");
+					else die("Sorry! Unable to process. please upload only .pdf file that is less than 2MB size");
 		}
 
 ?>
