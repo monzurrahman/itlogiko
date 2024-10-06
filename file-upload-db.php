@@ -43,10 +43,55 @@
 
 			</form>
 		</div>	
-
-		<div id="top_bottom">
-			
+<!-- Login section starts here -->
+		<div id="top_bottom" style="text-align:center; background: transparent;">
+			<h1>Login below for the admin. User admin and password@123 as the username and password</h1>
 		</div>
+
+				<div id="form_div">
+					<form method="POST" action="" id="form_1">
+				        <label for="username">Username:</label>
+				        <input type="text" name="username" id="username" required><br><br>
+
+				        <label for="password">Password:</label>
+				        <input type="password" name="password" id="password" required><br><br>
+
+				        <input type="submit" value="Login" id="button" name = "login_var">
+				    </form>
+				</div>	
+				<?php
+					$username_set = 'admin';
+					$password_set = 'password@123';
+					
+					if (isset($_POST['login_var']))
+					{
+						$user_admin    = htmlspecialchars($_POST['username']);
+						$user_password = htmlspecialchars($_POST['password']);
+
+						if (($username_set===$user_admin) && ($password_set===$user_password))
+						{
+
+							echo "<h1>"."Success! Username is:".$user_admin." And password is:".$user_password. "</h1>";
+						}
+
+						
+
+
+
+
+
+						
+					}
+
+
+				?>
+				<div id="top_bottom">
+					
+				</div>
+
+<!-- Login section ends here -->
+
+
 	</div>
 <?php
 
