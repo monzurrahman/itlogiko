@@ -60,6 +60,7 @@
 				    </form>
 				</div>	
 				<?php
+
 					$username_set = 'admin';
 					$password_set = 'password@123';
 					
@@ -70,20 +71,18 @@
 
 						if (($username_set===$user_admin) && ($password_set===$user_password))
 						{
-
-							echo "<h1>"."Success! Username is:".$user_admin." And password is:".$user_password. "</h1>";
-						}
-
-						
-
-
-
-
+							$_SESSION['loggedin']= true;
+							session_start();
+							//echo "<h1>"."Login Success!"."</h1>";
+							header('Location: admin.php');
+							exit();
+							
+						} else {
+									echo "Unsuccessful! Wrong username and password";
+							   }
 
 						
 					}
-
-
 				?>
 				<div id="top_bottom">
 					
