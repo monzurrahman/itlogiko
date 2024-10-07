@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- it is the same file/replica of file-upload-db.php -->
 <html>
 <head>
 	<meta charset="utf-8">
