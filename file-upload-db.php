@@ -1,3 +1,6 @@
+<?php 
+ob_start(); // header() must be called before any actual output is sent . make sure first line of your .php file does not have a blank space
+?>
 <!DOCTYPE html>
 <html>
 <head>
